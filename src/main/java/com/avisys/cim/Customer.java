@@ -1,6 +1,6 @@
 package com.avisys.cim;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +14,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -56,6 +55,11 @@ public class Customer{
 	public void addnumber(MobileNumber num) {
 		list.add(num);
 		num.setCust(this);
+	}
+	
+	public void deleteNumber(MobileNumber num) {
+		list.remove(num);
+		num.setCust(null);
 	}
 	
 

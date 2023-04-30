@@ -104,6 +104,27 @@ body- {
 response- Custmer addded Successfully
 
 
+8. delete a customer by mobile number
+DELETE request url- http://localhost:7070/customer/delete/9111111112
+body- {}
+response- Custmer deleted Successfully
+
+
+9. add a mobile a mobile number to an existing customer
+Post request url- http://localhost:7070/customer/addMobile/3
+body- {
+    "mobileNumber":"97455666698"
+}
+response - mobile number added successfully
+
+10. delete a mobile a mobile number to an existing customer
+Post request url- http://localhost:7070/customer/addMobile/4
+body- {
+    "mobileNumber":"9111141114"
+}
+response - mobile number deleted successfully
+
+
 
 
 

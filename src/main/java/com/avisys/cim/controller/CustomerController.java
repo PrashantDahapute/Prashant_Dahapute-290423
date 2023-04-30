@@ -18,64 +18,64 @@ import com.avisys.cim.service.CustomerService;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
-	
+
 	@Autowired
 	private CustomerService custService;
-	
-	
+
 	@GetMapping("/all")
 	public List<Customer> getAll() {
-		
-		return custService.getAll();//return the list of customer
-		
+
+		return custService.getAll();// return the list of customer
+
 	}
-	
-	
-	//adding multiple number to existing customer
-	@PostMapping("/addMobile/{id}")
-	public String addmobile(@PathVariable Long id,@RequestBody MobileNumber mob) {
-		return custService.addNo(id,mob);
-	}
-	
+
 	@GetMapping("/getAllnumber/{id}")
-	public List<MobileNumber> get(@PathVariable Long id){
+	public List<MobileNumber> get(@PathVariable Long id) {
 		return custService.getAllNumber(id);
 	}
-	
-
 
 	@GetMapping("/mobileNo/{mobileNumber}")
-	public Customer getBymobileNumber(@PathVariable  String mobileNumber) {
-		
+	public Customer getBymobileNumber(@PathVariable String mobileNumber) {
+
 		return custService.getBymobileNumber(mobileNumber);
-		
+
 	}
-	
-	
-	
+
 	@GetMapping("/firstname/{name}")
-	public List<Customer> getByFirstName(@PathVariable  String name) {
-		
+	public List<Customer> getByFirstName(@PathVariable String name) {
+
 		return custService.getByFirstName(name);
-		
+
 	}
-	
+
 	@GetMapping("/lastname/{name}")
-	public List<Customer> getByLastName(@PathVariable  String name) {
-		
+	public List<Customer> getByLastName(@PathVariable String name) {
+
 		return custService.getByLastName(name);
-		
+
 	}
-	
+
 	@DeleteMapping("/delete/{mobileNo}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable String mobileNo){
-		
+	public ResponseEntity<String> deleteCustomer(@PathVariable String mobileNo) {
+
 		return custService.removeCustomer(mobileNo);
 	}
-	
+
 	@PostMapping("/add/{mobNo}")
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer,@PathVariable String mobNo){
-		return custService.createCustomer(customer,mobNo);
+	public ResponseEntity<String> addCustomer(@RequestBody Customer customer, @PathVariable String mobNo) {
+		return custService.createCustomer(customer, mobNo);
+	}
+
+	// adding multiple number to existing customer
+	@PostMapping("/addMobile/{id}")
+	public String addmobile(@PathVariable Long id, @RequestBody MobileNumber mob) {
+		return custService.addNo(id, mob);
+	}
+
+	// adding multiple number to existing customer
+	@PostMapping("/deleteMobile/{id}")
+	public String deleteMobileNo(@PathVariable Long id, @RequestBody MobileNumber mob) {
+		return custService.removeNo(id, mob);
 	}
 
 }

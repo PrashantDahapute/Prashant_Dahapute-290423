@@ -1,7 +1,6 @@
 package com.avisys.cim.service;
 
-import java.util.Collection;
-import java.util.Collections;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,18 +50,7 @@ public class CustomerService {
 		return custRepo.findByLastNameContainingIgnoreCase(name);
 	}
 
-	public String addNo(Long id, MobileNumber mob) {
-		try {
-			Customer cust = custRepo.findById(id).get();
-			cust.addnumber(mob);// this is helper method to add mobile object in list and set the
-								// customer to the mobile number
-			mobRepo.save(mob);
-			return "successful";
-
-		} catch (Exception e) {
-			return "Invalid Id";
-		}
-	}
+	
 
 	// this api return all mobile number a customer is having
 	public List<MobileNumber> getAllNumber(Long id) {
@@ -104,5 +92,41 @@ public class CustomerService {
 
 	 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("mobile number not exists");
 	}
+	
+	
+	public String addNo(Long id, MobileNumber mob) {
+		try {
+			Customer cust = custRepo.findById(id).get();
+			cust.addnumber(mob);// this is helper method to add mobile object in list and set the
+								// customer to the mobile number
+			mobRepo.save(mob);
+			return "mobile number added successful";
+
+		} catch (Exception e) {
+			return "Invalid Id";
+		}
+	}
+	
+	
+	public String removeNo(Long id, MobileNumber mob) {
+		try {
+			Customer cust = custRepo.findById(id).get();
+			List<MobileNumber> mobi = cust.getList();
+			
+			for(MobileNumber mb:mobi) {
+				if(mb.getMobileNumber().equals(mob.getMobileNumber())) {
+					cust.deleteNumber(mb);
+					mobRepo.delete(mb);
+					return "mobile number deleted successful";
+				}
+			}
+			
+			return "invalid Mobile Number";
+			
+		} catch (Exception e) {
+			return "Invalid Id";
+		}
+	}
+	
 
 }

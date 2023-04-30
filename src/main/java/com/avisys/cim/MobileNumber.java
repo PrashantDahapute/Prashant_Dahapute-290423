@@ -1,6 +1,5 @@
 package com.avisys.cim;
 
-import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
