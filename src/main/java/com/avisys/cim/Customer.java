@@ -14,15 +14,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer implements Serializable {
+public class Customer{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+//	 @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUSTOMER_SEQ")
+//	 @SequenceGenerator(name = "CUSTOMER_SEQ", sequenceName = "CUSTOMER_SEQ", allocationSize = 1)
 
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String firstName;
@@ -46,6 +49,10 @@ public class Customer implements Serializable {
 	@JsonIgnore
 	private List<MobileNumber> list=new ArrayList<>();
 	
+	public void setList(List<MobileNumber> list) {
+		this.list = list;
+	}
+
 	public void addnumber(MobileNumber num) {
 		list.add(num);
 		num.setCust(this);

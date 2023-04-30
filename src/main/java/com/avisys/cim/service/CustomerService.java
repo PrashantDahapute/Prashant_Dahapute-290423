@@ -1,8 +1,12 @@
 package com.avisys.cim.service;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.avisys.cim.Customer;
@@ -72,4 +76,43 @@ public class CustomerService {
 			return null;
 		}
 	}
+	
+	//for sending the http response responseentity is uses to send http code and body containing message.
+	public ResponseEntity<String> createCustomer(Customer customer,String mobNo) {
+		List<MobileNumber> mobi=mobRepo.findAll();
+
+		for(MobileNumber mob:mobi) {
+			
+			if(mob.getMobileNumber().equals(mobNo)) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("already exists");
+			}
+		}
+		custRepo.save(customer);
+		return ResponseEntity.ok("Custmer addded Successfully");	
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
