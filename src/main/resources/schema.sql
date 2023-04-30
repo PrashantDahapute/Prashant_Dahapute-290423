@@ -1,7 +1,12 @@
 CREATE TABLE customer (
-	id BIGINT not null,
-	first_name varchar(100) not null,
-	last_name varchar(100) not null,
-	mobile_number varchar(15) not null
+	id INT NOT NULL PRIMARY KEY,
+	first_name VARCHAR(100) NOT NULL,
+	last_name VARCHAR(100) NOT NULL
 );
-ALTER TABLE customer ADD CONSTRAINT customer_uk1 UNIQUE (mobile_number);
+
+CREATE TABLE mobile_number (
+	id INT  auto_increment,
+	mobile_number VARCHAR(15) NOT NULL,
+	custid BIGINT NOT NULL,
+	CONSTRAINT mobile_number_customer_fk FOREIGN KEY (custid) REFERENCES customer(id)
+);

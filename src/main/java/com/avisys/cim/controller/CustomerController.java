@@ -3,16 +3,14 @@ package com.avisys.cim.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.avisys.cim.Customer;
-import com.avisys.cim.repository.CustomerRepository;
+import com.avisys.cim.MobileNumber;
 import com.avisys.cim.service.CustomerService;
 
 @RestController
@@ -26,16 +24,32 @@ public class CustomerController {
 	@GetMapping("/all")
 	public List<Customer> getAll() {
 		
-		return custService.getAll();
+		return custService.getAll();//return the list of customer
 		
 	}
 	
+	
+	//adding multiple number to existing customer
+	@PostMapping("/addMobile/{id}")
+	public String addmobile(@PathVariable Long id,@RequestBody MobileNumber mob) {
+		return custService.addNo(id,mob);
+	}
+	
+	@GetMapping("/getAllnumber/{id}")
+	public List<MobileNumber> get(@PathVariable Long id){
+		return custService.getAllNumber(id);
+	}
+	
+
+
 	@GetMapping("/mobileNo/{mobileNumber}")
 	public Customer getBymobileNumber(@PathVariable  String mobileNumber) {
 		
 		return custService.getBymobileNumber(mobileNumber);
 		
 	}
+	
+	
 	
 	@GetMapping("/firstname/{name}")
 	public List<Customer> getByFirstName(@PathVariable  String name) {
@@ -50,20 +64,5 @@ public class CustomerController {
 		return custService.getByLastName(name);
 		
 	}
-	
-	@PostMapping("/add")
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer){
-		return custService.createCustomer(customer);
-		
-		
-	}
-	
-	
-	
-
- 	
-	
-	
-	
 
 }

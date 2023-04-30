@@ -10,8 +10,6 @@ import com.avisys.cim.Customer;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
 
-	Customer findByMobileNumber(String mobileNumber);
-
 	List<Customer> findByFirstNameContainingIgnoreCase(String name);
 	
 	List<Customer> findByLastNameContainingIgnoreCase(String name);

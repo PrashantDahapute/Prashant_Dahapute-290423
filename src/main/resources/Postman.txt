@@ -1,0 +1,100 @@
+1. Getting All Customer
+GET request url- http://localhost:7070/customer/all
+body- {}
+response - [
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith"
+    },
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing"
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith"
+    },
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra"
+    }
+]
+
+
+2. Get Customer by firstname
+GET request url- http://localhost:7070/customer/firstname/th
+body- {}
+response - 
+[
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra"
+    }
+]
+
+3. Get Customer by lastname
+GET request url- http://localhost:7070/customer/lastname/th
+body- {}
+response - 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith"
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith"
+    }
+]
+
+4. add customer using mobile Number(for 2nd Requirement)
+POST request url- http://localhost:7070/customer/add
+body- {
+    "firstName":"rupesh",
+    "lastName":"Raut",
+    "mobileNumber": "9623884170"
+	}
+response - Added Successfully
+
+
+5. Get customer destails By Mobile Number
+GET request url- http://localhost:7070/customer/mobileNo/9111111112
+body- {}
+response - 
+{
+    "id": 2,
+    "firstName": "Joe",
+    "lastName": "Turing"
+}
+
+6. getting All numbers for a customer
+GET request url- http://localhost:7070/customer/getAllnumber/1
+body- {}
+response - 
+[
+    {
+        "id": 1,
+        "mobileNumber": "9111111111"
+    },
+    {
+        "id": 2,
+        "mobileNumber": "9111111100"
+    },
+    {
+        "id": 8,
+        "mobileNumber": "9111111174"
+    }
+]
+
+
+
+
+
+	
